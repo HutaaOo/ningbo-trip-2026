@@ -23,6 +23,20 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Bl
 .tip-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tip{padding:12px;border-radius:14px;background:#f7fafc;border:1px solid #e8eef4}.tip b{font-size:13px}.tip p{font-size:11px;color:#6c7b8b;margin:5px 0 0}
 .footer{font-size:11px;color:#8793a0;text-align:center;padding:12px 5px 30px}
 @media(max-width:430px){.hero h1{font-size:25px}.overview{gap:7px}.stat{padding:10px 8px}.stat b{font-size:16px}.card{padding:15px}.badge{display:none}}
+
+/* ===== 可点击增强版 ===== */
+.quick-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
+.quick-actions a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;background:#fff;border:1px solid #e6edf4;border-radius:14px;padding:9px 4px;color:#24445f;font-size:11px;font-weight:700;box-shadow:0 3px 12px rgba(31,78,121,.05)}
+.quick-actions .ico{font-size:18px;line-height:1}
+.place{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.map-btn{display:inline-flex;align-items:center;text-decoration:none;background:#eaf5f1;color:#19735e;border:1px solid #cfe9df;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:700;vertical-align:middle}
+.map-btn:active{transform:scale(.96)}
+.bottom-bar{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:50;width:min(720px,calc(100% - 24px));display:grid;grid-template-columns:repeat(4,1fr);gap:3px;padding:6px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border:1px solid #e4eaf0;border-radius:18px;box-shadow:0 8px 30px rgba(22,42,62,.16)}
+.bottom-bar a{text-decoration:none;color:#52677b;text-align:center;font-size:10px;padding:4px 2px;border-radius:12px}
+.bottom-bar a:first-child{background:#eef5fa;color:#1f4e79;font-weight:800}
+.bottom-bar .bi{display:block;font-size:16px;line-height:18px;margin-bottom:1px}
+body{padding-bottom:76px}
+@media(max-width:430px){.quick-actions{gap:6px}.quick-actions a{padding:8px 2px}.map-btn{font-size:9px;padding:2px 6px}}
 </style></head>
 <body>
 <header class="hero">
@@ -38,6 +52,14 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Bl
 <div class="stat"><b>🌊 1天</b><span>象山海边</span></div>
 <div class="stat"><b>🚶 轻换乘</b><span>市区步行优先</span></div>
 </div>
+
+<div class="quick-actions">
+  <a href="#d1"><span class="ico">🗓️</span>完整行程</a>
+  <a href="#d3"><span class="ico">🌊</span>海边路线</a>
+  <a href="#food"><span class="ico">🍜</span>必吃美食</a>
+  <a href="#budget"><span class="ico">💰</span>预算参考</a>
+</div>
+
 <section class="card" id="d0"><div class="day-head"><div class="date">9/30</div><div><h2>抵达宁波</h2><p class="sub">上海南 → 宁波站 → 酒店</p></div><span class="badge">抵达日</span></div><div class="route"><strong>🧭 今日路线</strong><span>上海南 → 宁波站 → 酒店</span></div><div class="timeline"><div class="step">
 <div class="time">21:47</div><div class="dot"></div>
 <div class="stepbox"><div class="place">🚄 上海南站出发</div>
@@ -196,14 +218,14 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Bl
 </div>
 </section>
 
-<section class="card">
+<section class="card" id="food">
 <h2 class="section-title">🍜 宁波必吃清单</h2>
 <ul class="list">
 <li>宁波汤圆</li><li>海鲜面 / 黄鱼面</li><li>烤菜年糕</li><li>红膏呛蟹</li><li>象山梭子蟹、黄鱼、虾姑、贝类</li>
 </ul>
 </section>
 
-<section class="card">
+<section class="card" id="budget">
 <h2 class="section-title">💰 预算参考</h2>
 <ul class="list">
 <li>市区交通：约 ¥50–100/人</li>
@@ -227,4 +249,40 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Bl
 </section>
 
 <div class="footer">这份页面按“打开就能照着走”的方式设计。班次、天气、景区开放及临时交通管制以出发当天官方信息为准。</div>
-</div></body></html>
+
+<nav class="bottom-bar">
+  <a href="#d0"><span class="bi">🏠</span>回到开头</a>
+  <a href="#d1"><span class="bi">🗓️</span>市区</a>
+  <a href="#d3"><span class="bi">🌊</span>海边</a>
+  <a href="#food"><span class="bi">🍜</span>美食</a>
+</nav>
+</div>
+<script>
+(function(){
+  const mapping = [
+    ["上海南站","上海南站"],["宁波站","宁波站"],["永丰路79号","宁波市海曙区永丰路79号"],
+    ["月湖公园","月湖公园"],["天一阁","天一阁博物院"],["鼓楼","宁波鼓楼"],
+    ["天一广场","天一广场"],["城隍庙","宁波城隍庙"],["老外滩","宁波老外滩"],
+    ["东钱湖","东钱湖旅游度假区"],["小普陀","东钱湖小普陀"],["韩岭","韩岭老街"],
+    ["宁波博物馆","宁波博物馆"],["松兰山","松兰山海滨旅游度假区"],
+    ["象山客运中心","象山客运中心"],["石浦渔港古城","石浦渔港古城"],
+    ["慈城古县城","慈城古县城"]
+  ];
+  document.querySelectorAll(".place").forEach(function(el){
+    const text = el.textContent.replace(/\s+/g," ");
+    let target = null;
+    for(const item of mapping){
+      if(text.indexOf(item[0]) !== -1){ target = item[1]; break; }
+    }
+    if(!target) return;
+    const a = document.createElement("a");
+    a.className = "map-btn";
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.href = "https://uri.amap.com/search?keyword=" + encodeURIComponent(target);
+    a.textContent = "📍 地图";
+    el.appendChild(a);
+  });
+})();
+</script>
+</body></html>
